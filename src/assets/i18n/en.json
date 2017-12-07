@@ -1,0 +1,19 @@
+{
+  "DOCUMENT_LIST": {
+    "ACTIONS": {
+      "FOLDER": {
+        "DOWNLOAD_AS_ZIP": "Download as ZIP",
+        "COPY": "Copy...",
+        "MOVE": "Move...",
+        "DELETE": "Delete"
+      },
+      "DOCUMENT": {
+        "DOWNLOAD": "Download",
+        "COPY": "Copy...",
+        "MOVE": "Move...",
+        "MANAGE_VERSIONS": "Manage Versions...",
+        "DELETE": "Delete"
+      }
+    }
+  }
+}

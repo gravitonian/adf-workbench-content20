@@ -1,0 +1,44 @@
+<mat-sidenav-container>
+  <mat-sidenav #mainSideNav mode="side" opened>
+    <mat-toolbar>
+      <img src="../assets/images/alfresco-logo.png" style="height:60%">
+      <span fxFlex></span>
+      {{ appName }}
+    </mat-toolbar>
+    <mat-nav-list>
+      <a *ngFor="let menuItem of mainMenuItems"
+         mat-list-item
+         mat-ripple
+         [style.position]="'relative'"
+         routerLinkActive="selected"
+         [routerLink]="[menuItem.path]">
+        <mat-icon mat-list-icon *ngIf="menuItem.icon">{{ menuItem.icon }}</mat-icon>
+        <span>{{ menuItem.title }}</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="mainSideNav.toggle()">
+      <mat-icon *ngIf="mainSideNav.opened">chevron_left</mat-icon>
+      <mat-icon *ngIf="!mainSideNav.opened">menu</mat-icon>
+    </button>
+    {{ (activeMenuItem$ | async)?.title }}
+    <span fxFlex></span>
+    {{ getCurrentUser() }}
+    <button mat-icon-button [matMenuTriggerFor]="dropdownMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
+<mat-menu #dropdownMenu x-position="before">
+  <a mat-menu-item href="" (click)="onLogout($event)">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </a>
+  <a mat-menu-item href="" routerLink="/about">
+    <mat-icon>info_outline</mat-icon>
+    <span>About</span>
+  </a>
+</mat-menu>
+‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍
