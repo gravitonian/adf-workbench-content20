@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { RepositoryPageComponent } from './repository-page/repository-page.component';
 import { RepositoryDetailsPageComponent } from './repository-details-page/repository-details-page.component';
 import { RepositoryListPageComponent } from './repository-list-page/repository-list-page.component';
+import { RepositoryDetailsFormPageComponent } from './repository-details-form-page/repository-details-form-page.component';
 
 import { AuthGuardEcm } from '@alfresco/adf-core';
-
 
 const routes: Routes = [
   {
@@ -22,7 +22,8 @@ const routes: Routes = [
     },
     children: [
       { path: '', component: RepositoryListPageComponent, canActivate: [AuthGuardEcm] },
-      { path: ':node-id', component: RepositoryDetailsPageComponent, canActivate: [AuthGuardEcm] }
+      { path: ':node-id', component: RepositoryDetailsPageComponent, canActivate: [AuthGuardEcm] },
+      { path: 'form/:node-id', component: RepositoryDetailsFormPageComponent, canActivate: [AuthGuardEcm] }
     ]
   }
 ];

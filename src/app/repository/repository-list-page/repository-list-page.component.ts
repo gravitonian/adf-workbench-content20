@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ContentService, FolderCreatedEvent, NotificationService } from '@alfresco/adf-core';
 import { DocumentListComponent, DownloadZipDialogComponent } from '@alfresco/adf-content-services';
@@ -13,14 +14,29 @@ import { VersionManagerDialogComponent } from './version-manager-dialog.componen
   styleUrls: ['./repository-list-page.component.scss']
 })
 export class RepositoryListPageComponent implements OnInit {
+  currentFolderId = '-root-'; // By default display /Company Home
+
   @ViewChild(DocumentListComponent)
   documentList: DocumentListComponent;
 
   constructor(private notificationService: NotificationService,
               private contentService: ContentService,
-              private dialog: MatDialog) {  }
+              private dialog: MatDialog,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {  }
 
   ngOnInit() {
+    // Check if we should display some other folder than root
+    const currentFolderIdObservable = this.activatedRoute
+      .queryParamMap
+      .map(params => params.get('current_folder_id'));
+    currentFolderIdObservable.subscribe((id: string) => {
+      if (id) {
+        this.currentFolderId = id;
+        this.documentList.loadFolderByNodeId(this.currentFolderId);
+      }
+    });
+
     this.contentService.folderCreated.subscribe(value => this.onFolderCreated(value));
   }
 
@@ -106,5 +122,29 @@ export class RepositoryListPageComponent implements OnInit {
     console.log('Upload button successful!');
 
     this.documentList.reload();
+  }
+
+  onFolderDetails(event: any) {
+    const entry: MinimalNodeEntryEntity = event.value.entry;
+    console.log('RepositoryListPageComponent: Navigating to details page for folder: ' + entry.name);
+    this.router.navigate(['/repository', entry.id]);
+  }
+
+  onDocumentDetails(event: any) {
+    const entry: MinimalNodeEntryEntity = event.value.entry;
+    console.log('RepositoryListPageComponent: Navigating to details page for document: ' + entry.name);
+    this.router.navigate(['/repository', entry.id]);
+  }
+
+  onFolderDetailsForm(event: any) {
+    const entry: MinimalNodeEntryEntity = event.value.entry;
+    console.log('RepositoryListPageComponent: Navigating to details page (form) for folder: ' + entry.name);
+    this.router.navigate(['/repository/form', entry.id]);
+  }
+
+  onDocumentDetailsForm(event: any) {
+    const entry: MinimalNodeEntryEntity = event.value.entry;
+    console.log('RepositoryListPageComponent: Navigating to details page (form) for document: ' + entry.name);
+    this.router.navigate(['/repository/form', entry.id]);
   }
 }

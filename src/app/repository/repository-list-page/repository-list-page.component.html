@@ -33,11 +33,23 @@
   <adf-document-list
     #documentList
     [navigationMode]="'click'"
-    [currentFolderId]="'-root-'"
+    [currentFolderId]="currentFolderId"
     [contextMenuActions]="true"
     [contentActions]="true">
     <content-actions>
       <!-- Folder actions -->
+      <content-action
+        title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.DETAILS' | translate}}"
+        [icon]="'folder'"
+        [target]="'folder'"
+        (execute)="onFolderDetails($event)">
+      </content-action>
+      <content-action
+        title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.DETAILS_FORM' | translate}}"
+        [icon]="'folder'"
+        [target]="'folder'"
+        (execute)="onFolderDetailsForm($event)">
+      </content-action>
       <content-action
         title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.DOWNLOAD_AS_ZIP' | translate}}"
         [icon]="'file_download'"
@@ -78,6 +90,18 @@
         (success)="onContentActionSuccess($event)">
       </content-action>
       <!-- File actions -->
+      <content-action
+        title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.DETAILS' | translate}}"
+        [icon]="'insert_drive_file'"
+        [target]="'document'"
+        (execute)="onDocumentDetails($event)">
+      </content-action>
+      <content-action
+        title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.DETAILS_FORM' | translate}}"
+        [icon]="'insert_drive_file'"
+        [target]="'document'"
+        (execute)="onDocumentDetailsForm($event)">
+      </content-action>
       <content-action
         title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.DOWNLOAD' | translate}}"
         [icon]="'file_download'"

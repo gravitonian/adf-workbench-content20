@@ -8,6 +8,7 @@ import { RepositoryDetailsPageComponent } from './repository-details-page/reposi
 import { VersionManagerDialogComponent } from './repository-list-page/version-manager-dialog.component';
 
 import { AppCommonModule } from '../app-common/app-common.module';
+import { RepositoryDetailsFormPageComponent } from './repository-details-form-page/repository-details-form-page.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { AppCommonModule } from '../app-common/app-common.module';
     /* Common App imports (Angular Core and Material, ADF Core, Content, and Process */
     AppCommonModule
   ],
-  declarations: [RepositoryPageComponent, RepositoryListPageComponent, RepositoryDetailsPageComponent, VersionManagerDialogComponent],
+  declarations: [RepositoryPageComponent, RepositoryListPageComponent, RepositoryDetailsPageComponent, VersionManagerDialogComponent, RepositoryDetailsFormPageComponent],
   entryComponents: [ VersionManagerDialogComponent ],
 })
 export class RepositoryModule { }

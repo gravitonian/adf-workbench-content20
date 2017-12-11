@@ -2,12 +2,16 @@
   "DOCUMENT_LIST": {
     "ACTIONS": {
       "FOLDER": {
+        "DETAILS": "Details",
+        "DETAILS_FORM": "Details(form)",
         "DOWNLOAD_AS_ZIP": "Download as ZIP",
         "COPY": "Copy...",
         "MOVE": "Move...",
         "DELETE": "Delete"
       },
       "DOCUMENT": {
+        "DETAILS": "Details",
+        "DETAILS_FORM": "Details(form)",
         "DOWNLOAD": "Download",
         "COPY": "Copy...",
         "MOVE": "Move...",
