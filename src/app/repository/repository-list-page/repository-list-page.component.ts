@@ -19,11 +19,11 @@ export class RepositoryListPageComponent implements OnInit {
   @ViewChild(DocumentListComponent)
   documentList: DocumentListComponent;
 
-  constructor(private notificationService: NotificationService,
-              private contentService: ContentService,
-              private dialog: MatDialog,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) {  }
+  constructor(protected notificationService: NotificationService,
+              protected contentService: ContentService,
+              protected dialog: MatDialog,
+              protected activatedRoute: ActivatedRoute,
+              protected router: Router) {  }
 
   ngOnInit() {
     // Check if we should display some other folder than root

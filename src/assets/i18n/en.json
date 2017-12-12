@@ -3,6 +3,14 @@
     "SEARCH": {
       "NO_RESULT": "0 - results found"
     },
+    "COLUMNS": {
+      "NAME": "Name",
+      "TITLE": "Title",
+      "DESCRIPTION": "Description",
+      "LAST_UPDATED": "Last Updated",
+      "SIZE": "Size",
+      "VERSION": "Version"
+    },
     "ACTIONS": {
       "FOLDER": {
         "DETAILS": "Details",

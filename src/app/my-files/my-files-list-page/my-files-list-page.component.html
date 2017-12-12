@@ -1,0 +1,94 @@
+<adf-toolbar [color]="'accent'">
+  <adf-toolbar-title>
+    <adf-breadcrumb
+      root="Company Home"
+      [target]="documentList"
+      [folderNode]="documentList.folderNode">
+    </adf-breadcrumb>
+  </adf-toolbar-title>
+  <adf-upload-button
+    [rootFolderId]="getDocumentListCurrentFolderId()"
+    [uploadFolders]="false"
+    [multipleFiles]="true"
+    [acceptedFilesType]="'*'"
+    [versioning]="false"
+    [adf-node-permission]="'create'"
+    [adf-nodes]="getNodesForPermissionCheck()"
+    (success)="onButtonUploadSuccess($event)">
+  </adf-upload-button>
+  <adf-toolbar-divider></adf-toolbar-divider>
+  <button
+    mat-icon-button
+    [disabled]="!canCreateContent(documentList.folderNode)"
+    [adf-create-folder]="getDocumentListCurrentFolderId()">
+    <mat-icon>create_new_folder</mat-icon>
+  </button>
+</adf-toolbar>
+
+<adf-upload-drag-area
+  [parentId]="getDocumentListCurrentFolderId()"
+  [adf-node-permission]="'create'"
+  [adf-nodes]="getNodesForPermissionCheck()"
+  (success)="onDragAndDropUploadSuccess($event)">
+  <adf-document-list
+    #documentList
+    [navigationMode]="'click'"
+    [currentFolderId]="currentFolderId"
+    [contextMenuActions]="true"
+    [contentActions]="true">
+    <data-columns>
+      <data-column key="$thumbnail" type="image"></data-column>
+      <data-column title="{{'DOCUMENT_LIST.COLUMNS.NAME' | translate}}" key="name" class="full-width ellipsis-cell"></data-column>
+      <data-column title="{{'DOCUMENT_LIST.COLUMNS.TITLE' | translate}}" key="properties.cm:title" type="text"></data-column>
+      <data-column title="{{'DOCUMENT_LIST.COLUMNS.DESCRIPTION' | translate}}" key="properties.cm:description" type="text"></data-column>
+      <data-column title="{{'DOCUMENT_LIST.COLUMNS.LAST_UPDATED' | translate}}" key="modifiedAt" type="date" format="shortDate" ></data-column>
+      <data-column title="{{'DOCUMENT_LIST.COLUMNS.SIZE' | translate}}" key="content.sizeInBytes" type="fileSize"></data-column>
+      <data-column title="{{'DOCUMENT_LIST.COLUMNS.VERSION' | translate}}" key="properties.cm:versionLabel">
+        <ng-template let-value="value">
+          <span *ngIf="value">V. {{value}}</span>
+        </ng-template>
+      </data-column>
+    </data-columns>
+    <content-actions>
+      <!-- Folder actions -->
+      <content-action
+        title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.DETAILS' | translate}}"
+        [icon]="'folder'"
+        [target]="'folder'"
+        (execute)="onFolderDetails($event)">
+      </content-action>
+      <content-action
+        title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.DELETE' | translate}}"
+        [icon]="'delete'"
+        [target]="'folder'"
+        [permission]="'delete'"
+        [disableWithNoPermission]="true"
+        [handler]="'delete'"
+        (permissionEvent)="onContentActionPermissionError($event)"
+        (error)="onContentActionError($event)"
+        (success)="onContentActionSuccess($event)">
+      </content-action>
+      <!-- File actions -->
+      <content-action
+        title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.DETAILS' | translate}}"
+        [icon]="'insert_drive_file'"
+        [target]="'document'"
+        (execute)="onDocumentDetails($event)">
+      </content-action>
+      <content-action
+        title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.DELETE' | translate}}"
+        [icon]="'delete'"
+        [target]="'document'"
+        [permission]="'delete'"
+        [disableWithNoPermission]="true"
+        [handler]="'delete'"
+        (permissionEvent)="onContentActionPermissionError($event)"
+        (error)="onContentActionError($event)"
+        (success)="onContentActionSuccess($event)">
+      </content-action>
+    </content-actions>
+  </adf-document-list>‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍
+  <adf-pagination
+    [target]="documentList">
+  </adf-pagination>
+</adf-upload-drag-area>

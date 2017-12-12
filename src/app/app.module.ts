@@ -12,6 +12,8 @@ import { RepositoryRoutingModule } from './repository/repository-routing.module'
 import { RepositoryModule } from './repository/repository.module';
 import { ContentSearchRoutingModule} from './content-search/content-search-routing.module';
 import { ContentSearchModule} from './content-search/content-search.module';
+import { MyFilesModule } from './my-files/my-files.module';
+import { MyFilesRoutingModule } from './my-files/my-files-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ContentSearchModule} from './content-search/content-search.module';
     RepositoryModule,
     RepositoryRoutingModule,
     ContentSearchModule,
-    ContentSearchRoutingModule
+    ContentSearchRoutingModule,
+    MyFilesModule,
+    MyFilesRoutingModule
   ],
   providers: [AppMenuService],
   bootstrap: [AppComponent]

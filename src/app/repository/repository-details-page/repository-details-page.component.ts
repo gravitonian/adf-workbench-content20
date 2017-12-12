@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import {MinimalNodeEntryEntity, NodeBody} from 'alfresco-js-api';
+import { MinimalNodeEntryEntity, NodeBody } from 'alfresco-js-api';
 import {
   CardViewDateItemModel, CardViewTextItemModel,
   CardViewItem, ContentService, NodesApiService,
@@ -35,8 +35,6 @@ export class RepositoryDetailsPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // const nodeId = this.activatedRoute.snapshot.params['node-id'];
-
     this.activatedRoute.params.subscribe(params => {
       const nodeId = params['node-id'];
       console.log('Node ID: ', nodeId);
