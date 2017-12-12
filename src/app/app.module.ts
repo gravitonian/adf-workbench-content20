@@ -10,6 +10,8 @@ import { AppLoginModule } from './app-login/app-login.module';
 import { AppMenuService } from './app-menu/app-menu.service';
 import { RepositoryRoutingModule } from './repository/repository-routing.module';
 import { RepositoryModule } from './repository/repository.module';
+import { ContentSearchRoutingModule} from './content-search/content-search-routing.module';
+import { ContentSearchModule} from './content-search/content-search.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RepositoryModule } from './repository/repository.module';
     AppLoginModule,
     AppLoginRoutingModule,
     RepositoryModule,
-    RepositoryRoutingModule
+    RepositoryRoutingModule,
+    ContentSearchModule,
+    ContentSearchRoutingModule
   ],
   providers: [AppMenuService],
   bootstrap: [AppComponent]

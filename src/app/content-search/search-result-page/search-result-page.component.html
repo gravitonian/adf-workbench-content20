@@ -1,0 +1,117 @@
+<adf-search [searchTerm]="searchTerm"
+            [maxResults]="20"
+            (resultLoaded)="showSearchResult($event)">
+</adf-search>
+
+<adf-toolbar [color]="'accent'">
+  <adf-toolbar-title>
+    Search Results
+  </adf-toolbar-title>
+</adf-toolbar>
+
+<adf-document-list
+  #documentList
+  [navigationMode]="'click'"
+  [currentFolderId]="null"
+  [contextMenuActions]="true"
+  [contentActions]="true"
+  [node]="resultNodePageList">
+  <content-actions>
+    <!-- Folder actions -->
+    <content-action
+      title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.DETAILS' | translate}}"
+      [icon]="'folder'"
+      [target]="'folder'"
+      (execute)="onDetails($event)">
+    </content-action>
+    <content-action
+      title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.COPY' | translate}}"
+      [icon]="'content_copy'"
+      [target]="'folder'"
+      [permission]="'update'"
+      [disableWithNoPermission]="true"
+      [handler]="'copy'"
+      (permissionEvent)="onContentActionPermissionError($event)"
+      (error)="onContentActionError($event)"
+      (success)="onContentActionSuccess($event)">
+    </content-action>
+    <content-action
+      title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.MOVE' | translate}}"
+      [icon]="'redo'"
+      [target]="'folder'"
+      [permission]="'update'"
+      [disableWithNoPermission]="true"
+      [handler]="'move'"
+      (permissionEvent)="onContentActionPermissionError($event)"
+      (error)="onContentActionError($event)"
+      (success)="onContentActionSuccess($event)">
+    </content-action>
+    <content-action
+      title="{{'DOCUMENT_LIST.ACTIONS.FOLDER.DELETE' | translate}}"
+      [icon]="'delete'"
+      [target]="'folder'"
+      [permission]="'delete'"
+      [disableWithNoPermission]="true"
+      [handler]="'delete'"
+      (permissionEvent)="onContentActionPermissionError($event)"
+      (error)="onContentActionError($event)"
+      (success)="onContentActionSuccess($event)">
+    </content-action>
+    <!-- File actions -->
+    <content-action
+      title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.DETAILS' | translate}}"
+      [icon]="'insert_drive_file'"
+      [target]="'document'"
+      (execute)="onDetails($event)">
+    </content-action>
+    <content-action
+      title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.DOWNLOAD' | translate}}"
+      [icon]="'file_download'"
+      [target]="'document'"
+      [handler]="'download'">
+    </content-action>
+    <content-action
+      title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.COPY' | translate}}"
+      [icon]="'content_copy'"
+      [target]="'document'"
+      [permission]="'update'"
+      [disableWithNoPermission]="true"
+      [handler]="'copy'"
+      (permissionEvent)="onContentActionPermissionError($event)"
+      (error)="onContentActionError($event)"
+      (success)="onContentActionSuccess($event)">
+    </content-action>
+    <content-action
+      title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.MOVE' | translate}}"
+      [icon]="'redo'"
+      [target]="'document'"
+      [permission]="'update'"
+      [disableWithNoPermission]="true"
+      [handler]="'move'"
+      (permissionEvent)="onContentActionPermissionError($event)"
+      (error)="onContentActionError($event)"
+      (success)="onContentActionSuccess($event)">
+    </content-action>
+    <content-action
+      title="{{'DOCUMENT_LIST.ACTIONS.DOCUMENT.DELETE' | translate}}"
+      [icon]="'delete'"
+      [target]="'document'"
+      [permission]="'delete'"
+      [disableWithNoPermission]="true"
+      [handler]="'delete'"
+      (permissionEvent)="onContentActionPermissionError($event)"
+      (error)="onContentActionError($event)"
+      (success)="onContentActionSuccess($event)">
+    </content-action>
+  </content-actions>
+  <empty-folder-content>
+    <ng-template>
+      <div class="adf-empty_template">
+        <div class="adf-no-result-message">{{ 'DOCUMENT_LIST.SEARCH.NO_RESULT' | translate }}</div>
+      </div>
+    </ng-template>
+  </empty-folder-content>
+</adf-document-list>‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍
+<adf-pagination
+  [target]="documentList">
+</adf-pagination>

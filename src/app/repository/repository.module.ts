@@ -18,7 +18,8 @@ import { RepositoryDetailsFormPageComponent } from './repository-details-form-pa
     /* Common App imports (Angular Core and Material, ADF Core, Content, and Process */
     AppCommonModule
   ],
-  declarations: [RepositoryPageComponent, RepositoryListPageComponent, RepositoryDetailsPageComponent, VersionManagerDialogComponent, RepositoryDetailsFormPageComponent],
+  declarations: [RepositoryPageComponent, RepositoryListPageComponent, RepositoryDetailsPageComponent,
+    VersionManagerDialogComponent, RepositoryDetailsFormPageComponent],
   entryComponents: [ VersionManagerDialogComponent ],
 })
 export class RepositoryModule { }

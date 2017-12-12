@@ -24,6 +24,8 @@
     </button>
     {{ (activeMenuItem$ | async)?.title }}
     <span fxFlex></span>
+    <app-search-bar></app-search-bar>
+    <span fxFlex></span>
     {{ getCurrentUser() }}
     <button mat-icon-button [matMenuTriggerFor]="dropdownMenu">
       <mat-icon>more_vert</mat-icon>

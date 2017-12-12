@@ -35,15 +35,21 @@ export class RepositoryDetailsPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    const nodeId = this.activatedRoute.snapshot.params['node-id'];
-    this.nodeService.getNode(nodeId).subscribe((entry: MinimalNodeEntryEntity) => {
-      this.node = entry;
+    // const nodeId = this.activatedRoute.snapshot.params['node-id'];
 
-      this.nodeService.getNode(this.node.parentId).subscribe((parentNode: MinimalNodeEntryEntity) => {
-        this.parentFolder = parentNode;
+    this.activatedRoute.params.subscribe(params => {
+      const nodeId = params['node-id'];
+      console.log('Node ID: ', nodeId);
+
+      this.nodeService.getNode(nodeId).subscribe((entry: MinimalNodeEntryEntity) => {
+        this.node = entry;
+
+        this.nodeService.getNode(this.node.parentId).subscribe((parentNode: MinimalNodeEntryEntity) => {
+          this.parentFolder = parentNode;
+        });
+
+        this.setupProps(this.node);
       });
-
-      this.setupProps(this.node);
     });
 
     this.cardViewUpdateService.itemUpdated$.subscribe(this.updateNodeDetails.bind(this));
