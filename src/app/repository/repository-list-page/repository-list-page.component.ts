@@ -1,20 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ContentService, FolderCreatedEvent, NotificationService } from '@alfresco/adf-core';
+import { Subscription } from 'rxjs/Subscription';
+
+import { ContentService, NotificationService } from '@alfresco/adf-core';
 import { DocumentListComponent, DownloadZipDialogComponent } from '@alfresco/adf-content-services';
 import { MinimalNodeEntity, MinimalNodeEntryEntity } from 'alfresco-js-api';
 
 import { VersionManagerDialogComponent } from './version-manager-dialog.component';
+
 
 @Component({
   selector: 'app-repository-list-page',
   templateUrl: './repository-list-page.component.html',
   styleUrls: ['./repository-list-page.component.scss']
 })
-export class RepositoryListPageComponent implements OnInit {
+export class RepositoryListPageComponent implements OnInit, OnDestroy {
   currentFolderId = '-root-'; // By default display /Company Home
+
+  private onCreateFolderSubscription: Subscription;
 
   @ViewChild(DocumentListComponent)
   documentList: DocumentListComponent;
@@ -37,8 +42,13 @@ export class RepositoryListPageComponent implements OnInit {
       }
     });
 
-    this.contentService.folderCreated.subscribe(value => this.onFolderCreated(value));
+    this.onCreateFolderSubscription = this.contentService.folderCreate.subscribe(value => this.onFolderCreated(value));
   }
+
+  ngOnDestroy() {
+    this.onCreateFolderSubscription.unsubscribe();
+  }
+
 
   onDragAndDropUploadSuccess($event: Event) {
     console.log('Drag and Drop upload successful!');
@@ -101,8 +111,8 @@ export class RepositoryListPageComponent implements OnInit {
     });
   }
 
-  onFolderCreated(event: FolderCreatedEvent) {
-    if (event && event.parentId === this.documentList.currentFolderId) {
+  onFolderCreated(node: MinimalNodeEntryEntity) {
+    if (node && node.parentId === this.documentList.currentFolderId) {
       this.documentList.reload();
     }
   }

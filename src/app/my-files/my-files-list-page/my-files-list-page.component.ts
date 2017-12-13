@@ -26,15 +26,8 @@ export class MyFilesListPageComponent extends RepositoryListPageComponent implem
     super.ngOnInit();
   }
 
-  onFolderDetails(event: any) {
+  onDetails(event: any) {
     const entry: MinimalNodeEntryEntity = event.value.entry;
-    console.log('MyFilesListPageComponent: Navigating to details page for folder: ' + entry.name);
-    this.router.navigate(['/my-files', entry.id]);
-  }
-
-  onDocumentDetails(event: any) {
-    const entry: MinimalNodeEntryEntity = event.value.entry;
-    console.log('MyFilesListPageComponent: Navigating to details page for document: ' + entry.name);
     this.router.navigate(['/my-files', entry.id]);
   }
 }

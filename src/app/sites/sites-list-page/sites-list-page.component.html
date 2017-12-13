@@ -1,3 +1,11 @@
+<adf-toolbar>
+  <div class="app-site-container-style">
+    <adf-sites-dropdown
+      [hideMyFiles]="true"
+      (change)="getSiteContent($event)">
+    </adf-sites-dropdown>
+  </div>
+</adf-toolbar>
 <adf-toolbar [color]="'accent'">
   <adf-toolbar-title>
     <adf-breadcrumb
@@ -36,19 +44,6 @@
     [currentFolderId]="currentFolderId"
     [contextMenuActions]="true"
     [contentActions]="true">
-    <data-columns>
-      <data-column key="$thumbnail" type="image"></data-column>
-      <data-column title="{{'DOCUMENT_LIST.COLUMNS.NAME' | translate}}" key="name" class="full-width ellipsis-cell"></data-column>
-      <data-column title="{{'DOCUMENT_LIST.COLUMNS.TITLE' | translate}}" key="properties.cm:title" type="text"></data-column>
-      <data-column title="{{'DOCUMENT_LIST.COLUMNS.DESCRIPTION' | translate}}" key="properties.cm:description" type="text"></data-column>
-      <data-column title="{{'DOCUMENT_LIST.COLUMNS.LAST_UPDATED' | translate}}" key="modifiedAt" type="date" format="shortDate" ></data-column>
-      <data-column title="{{'DOCUMENT_LIST.COLUMNS.SIZE' | translate}}" key="content.sizeInBytes" type="fileSize"></data-column>
-      <data-column title="{{'DOCUMENT_LIST.COLUMNS.VERSION' | translate}}" key="properties.cm:versionLabel">
-        <ng-template let-value="value">
-          <span *ngIf="value">V. {{value}}</span>
-        </ng-template>
-      </data-column>
-    </data-columns>
     <content-actions>
       <!-- Folder actions -->
       <content-action
