@@ -33,7 +33,7 @@
   <adf-document-list
     #documentList
     [navigationMode]="'click'"
-    [currentFolderId]="currentFolderId"
+    [currentFolderId]="getDocumentListCurrentFolderId()"
     [contextMenuActions]="true"
     [contentActions]="true">
     <data-columns>

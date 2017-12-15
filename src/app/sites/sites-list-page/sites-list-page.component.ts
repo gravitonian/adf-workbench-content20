@@ -29,6 +29,10 @@ export class SitesListPageComponent extends RepositoryListPageComponent implemen
     super.ngOnInit();
   }
 
+  siteListing() {
+    return this.currentFolderId === this.sitesDataStore;
+  }
+
   getSiteContent(site: SiteModel) {
     if (site && site.guid) {
       this.getDocumentLibrarySiteContainer(site);

@@ -118,7 +118,7 @@ export class RepositoryListPageComponent implements OnInit, OnDestroy {
   }
 
   getDocumentListCurrentFolderId() {
-    return this.documentList.currentFolderId || '-root-';
+    return this.currentFolderId;
   }
 
   canCreateContent(parentNode: MinimalNodeEntryEntity): boolean {

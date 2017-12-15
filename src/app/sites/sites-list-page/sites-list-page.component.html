@@ -6,7 +6,7 @@
     </adf-sites-dropdown>
   </div>
 </adf-toolbar>
-<adf-toolbar [color]="'accent'">
+<adf-toolbar [color]="'accent'" *ngIf="!siteListing()">
   <adf-toolbar-title>
     <adf-breadcrumb
       root="Company Home"
@@ -41,7 +41,7 @@
   <adf-document-list
     #documentList
     [navigationMode]="'click'"
-    [currentFolderId]="currentFolderId"
+    [currentFolderId]="getDocumentListCurrentFolderId()"
     [contextMenuActions]="true"
     [contentActions]="true">
     <content-actions>
